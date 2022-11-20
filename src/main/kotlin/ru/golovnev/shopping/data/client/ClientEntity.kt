@@ -17,10 +17,10 @@ class ClientEntity(
     override val name: String,
 
     @Column(name = "\"Telephone\"")
-    override val telephone: Long,
+    override val telephone: Long?,
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"ClientId\"", updatable = false, insertable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "\"ClientId\"")
     @JsonIgnore
     override val orders: List<OrderEntity> = listOf()
 ) : Client

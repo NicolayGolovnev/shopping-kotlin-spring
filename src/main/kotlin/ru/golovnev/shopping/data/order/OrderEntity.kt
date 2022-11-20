@@ -22,7 +22,7 @@ class OrderEntity(
     override val priceList: PriceListEntity,
 
     @Column(name = "\"Count\"")
-    override val count: Long,
+    override val count: Long?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ClientId\"")

@@ -32,19 +32,19 @@ interface ClientJpaRepository : JpaRepository<ClientEntity, UUID> {
     fun nativeSave(
         @Param(value = "clientId") id: UUID,
         @Param(value = "clientName") name: String,
-        @Param(value = "clientTelephone") telephone: Long
+        @Param(value = "clientTelephone") telephone: Long?
     )
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(
         nativeQuery = true,
-        value = "UPDATE public.\"Client\" SET \"Name\" = :clientName, \"Telephone\" = :clientTelephoneó " +
+        value = "UPDATE public.\"Client\" SET \"Name\" = :clientName, \"Telephone\" = :clientTelephone " +
                 "WHERE \"ClientId\" = :clientId"
     )
     fun nativeUpdate(
         @Param(value = "clientId") id: UUID,
         @Param(value = "clientName") name: String,
-        @Param(value = "clientTelephone") telephone: Long
+        @Param(value = "clientTelephone") telephone: Long?
     )
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)

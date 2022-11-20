@@ -15,8 +15,8 @@ class PriceListEntity(
     @Column(name = "\"PriceListId\"")
     override val id: UUID = UUID.randomUUID(),
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"PriceListId\"", updatable = false, insertable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "\"PriceListId\"")
     override val orders: List<OrderEntity> = listOf(),
 
     @ManyToOne(fetch = FetchType.LAZY)

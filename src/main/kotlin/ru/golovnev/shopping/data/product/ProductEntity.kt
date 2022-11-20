@@ -15,7 +15,7 @@ class ProductEntity(
     @Column(name = "\"Name\"")
     override val name: String,
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"ProductId\"", updatable = false, insertable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "\"ProductId\"")
     override val priceList: List<PriceListEntity> = listOf()
 ) : Product

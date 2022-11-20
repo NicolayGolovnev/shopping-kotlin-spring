@@ -22,5 +22,5 @@ interface Manufacturer {
     val priceList: List<PriceList>
 
     /** Модели производителя */
-    val model: List<Model>
+    val models: List<Model>
 }

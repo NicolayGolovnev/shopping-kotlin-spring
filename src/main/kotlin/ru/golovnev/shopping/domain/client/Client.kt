@@ -12,7 +12,7 @@ interface Client {
     val name: String
 
     /** Телефон */
-    val telephone: Long
+    val telephone: Long?
 
     /** Заказы клиента */
     val orders: List<Order>

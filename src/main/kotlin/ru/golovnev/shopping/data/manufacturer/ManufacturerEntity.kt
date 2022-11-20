@@ -22,11 +22,11 @@ class ManufacturerEntity(
     @Column(name = "\"Site\"")
     override val site: String?,
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"ManufacturerId\"", updatable = false, insertable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "\"ManufacturerId\"")
     override val priceList: List<PriceListEntity> = listOf(),
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"ManufacturerId\"", updatable = false, insertable = false)
-    override val model: List<ModelEntity> = listOf()
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "\"ManufacturerId\"")
+    override val models: List<ModelEntity> = listOf()
 ) : Manufacturer

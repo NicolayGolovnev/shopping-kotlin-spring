@@ -12,7 +12,7 @@ Database: PostgreSQL 12
 CREATE TABLE "Product"
 (
     "ProductId" UUID NOT NULL,
-    "Name"      Bigint NOT NULL
+    "Name"      Text NOT NULL
 )
     WITH (autovacuum_enabled = true)
 ;
@@ -26,7 +26,7 @@ ALTER TABLE "Product"
 CREATE TABLE "PriceList"
 (
     "PriceListId"    UUID   NOT NULL,
-    "ProductId"      Bigint NOT NULL,
+    "ProductId"      UUID NOT NULL,
     "ModelId"        UUID,
     "Price"          Bigint NOT NULL,
     "ManufacturerId" UUID
