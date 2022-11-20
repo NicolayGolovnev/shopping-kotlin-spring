@@ -5,13 +5,15 @@ spring:
     username: postgres
     password: postgres
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
   output:
     ansi:
       enabled: always

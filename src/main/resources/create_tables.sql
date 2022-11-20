@@ -11,7 +11,7 @@ Database: PostgreSQL 12
 
 CREATE TABLE "Product"
 (
-    "ProductId" Bigint NOT NULL,
+    "ProductId" UUID NOT NULL,
     "Name"      Bigint NOT NULL
 )
     WITH (autovacuum_enabled = true)
@@ -149,23 +149,23 @@ ALTER TABLE "PriceList"
     ADD CONSTRAINT "Product_To_PriceList_FK"
         FOREIGN KEY ("ProductId")
             REFERENCES "Product" ("ProductId")
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
 ;
 
 ALTER TABLE "Order"
     ADD CONSTRAINT "PriceList_To_Order_FK"
         FOREIGN KEY ("PriceListId")
             REFERENCES "PriceList" ("PriceListId")
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
 ;
 
 ALTER TABLE "Order"
     ADD CONSTRAINT "Client_To_Order_FK"
         FOREIGN KEY ("ClientId")
             REFERENCES "Client" ("ClientId")
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
 ;
 
