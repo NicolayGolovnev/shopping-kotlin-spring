@@ -17,7 +17,7 @@ class ClientEntity(
     override val name: String,
 
     @Column(name = "\"Telephone\"")
-    override val telephone: Long?,
+    override val telephone: Long? = null,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "\"ClientId\"")

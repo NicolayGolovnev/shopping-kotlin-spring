@@ -18,7 +18,7 @@ class ClientService(
     fun deleteById(clientId: UUID) =
         clientJpaRepository.deleteById(clientId)
 
-    fun findByIdOrThrow(clientId: UUID): Client =
+    fun findById(clientId: UUID): Client =
         clientJpaRepository.findByIdOrNull(clientId)
             ?: throw EntityNotFoundException("Пользователь с УИД $clientId не найден")
 

@@ -11,7 +11,7 @@ import javax.persistence.*
 class ManufacturerEntity(
     @Id
     @Column(name = "\"ManufacturerId\"")
-    override val id: UUID,
+    override val id: UUID = UUID.randomUUID(),
 
     @Column(name = "\"Name\"")
     override val name: String,
@@ -20,7 +20,7 @@ class ManufacturerEntity(
     override val country: String,
 
     @Column(name = "\"Site\"")
-    override val site: String?,
+    override val site: String? = null,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "\"ManufacturerId\"")

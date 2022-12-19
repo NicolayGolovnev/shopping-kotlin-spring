@@ -8,7 +8,7 @@ import java.util.*
 object ClientMockFactory {
     fun createClient(
         name: String = "Test",
-        telephone: Long = 89997776655,
+        telephone: Long? = 89997776655,
         relaxed: Boolean = true
     ): ClientEntity =
         mockk(relaxed = relaxed) client@{

@@ -15,14 +15,14 @@ class OrderEntity(
     override val id: UUID = UUID.randomUUID(),
 
     @Column(name = "\"Date\"")
-    override val date: LocalDate,
+    override val date: LocalDate = LocalDate.now(),
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"PriceListId\"")
     override val priceList: PriceListEntity,
 
     @Column(name = "\"Count\"")
-    override val count: Long?,
+    override val count: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ClientId\"")

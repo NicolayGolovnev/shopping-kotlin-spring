@@ -1,5 +1,6 @@
 package ru.golovnev.shopping.data.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import ru.golovnev.shopping.data.pricelist.PriceListEntity
 import ru.golovnev.shopping.data.manufacturer.ManufacturerEntity
 import ru.golovnev.shopping.domain.model.Model
