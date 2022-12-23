@@ -1,5 +1,6 @@
 package ru.golovnev.shopping.data.pricelist
 
+import org.hibernate.annotations.DynamicUpdate
 import ru.golovnev.shopping.data.product.ProductEntity
 import ru.golovnev.shopping.data.manufacturer.ManufacturerEntity
 import ru.golovnev.shopping.data.model.ModelEntity
@@ -10,6 +11,7 @@ import javax.persistence.*
 
 @Entity
 @Table(schema = "public", name = "\"PriceList\"")
+@DynamicUpdate
 class PriceListEntity(
     @Id
     @Column(name = "\"PriceListId\"")
@@ -21,16 +23,16 @@ class PriceListEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ProductId\"")
-    override val product: ProductEntity,
+    override var product: ProductEntity,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ModelId\"")
-    override val model: ModelEntity,
+    override var model: ModelEntity,
 
     @Column(name = "\"Price\"")
-    override val price: Long,
+    override var price: Long,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ManufacturerId\"")
-    override val manufacturer: ManufacturerEntity
+    override var manufacturer: ManufacturerEntity
 ) : PriceList

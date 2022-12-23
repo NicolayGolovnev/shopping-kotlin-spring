@@ -13,7 +13,7 @@ class ProductEntity(
     override val id: UUID = UUID.randomUUID(),
 
     @Column(name = "\"Name\"")
-    override val name: String,
+    override var name: String,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "\"ProductId\"")

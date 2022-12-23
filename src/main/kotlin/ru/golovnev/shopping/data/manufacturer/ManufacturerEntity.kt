@@ -14,13 +14,13 @@ class ManufacturerEntity(
     override val id: UUID = UUID.randomUUID(),
 
     @Column(name = "\"Name\"")
-    override val name: String,
+    override var name: String,
 
     @Column(name = "\"Country\"")
-    override val country: String,
+    override var country: String,
 
     @Column(name = "\"Site\"")
-    override val site: String? = null,
+    override var site: String? = null,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "\"ManufacturerId\"")

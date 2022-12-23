@@ -14,10 +14,10 @@ class ClientEntity(
     override val id: UUID = UUID.randomUUID(),
 
     @Column(name = "\"Name\"")
-    override val name: String,
+    override var name: String,
 
     @Column(name = "\"Telephone\"")
-    override val telephone: Long? = null,
+    override var telephone: Long? = null,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "\"ClientId\"")

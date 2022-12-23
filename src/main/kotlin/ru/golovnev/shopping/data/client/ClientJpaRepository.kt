@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
-@Repository
-@Transactional
 interface ClientJpaRepository : JpaRepository<ClientEntity, UUID> {
     @Query(
         nativeQuery = true,

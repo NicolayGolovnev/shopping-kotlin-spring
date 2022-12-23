@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service
 import ru.golovnev.shopping.data.product.ProductEntity
 import ru.golovnev.shopping.data.product.ProductJpaRepository
 import ru.golovnev.shopping.domain.product.Product
+import ru.golovnev.shopping.web.product.ProductDto
+import ru.golovnev.shopping.web.product.ProductMapper.toEntity
 import java.util.*
 import javax.persistence.EntityNotFoundException
 
@@ -12,7 +14,19 @@ import javax.persistence.EntityNotFoundException
 class ProductService(
     private val productJpaRepository: ProductJpaRepository
 ) {
-    fun save(product: Product): Product =
+    fun save(productDto: ProductDto): Product =
+        productDto.id?.let {
+            productJpaRepository.findByIdOrNull(it)?.let { product ->
+                saveProduct(
+                    product.apply {
+                        productDto.name?.let { name -> this.name = name }
+                    }
+                )
+            }
+        } ?: saveProduct(productDto.toEntity())
+
+
+    private fun saveProduct(product: Product): Product =
         productJpaRepository.save(product as ProductEntity)
 
     fun deleteById(productId: UUID) =

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service
 import ru.golovnev.shopping.data.client.ClientEntity
 import ru.golovnev.shopping.data.client.ClientJpaRepository
 import ru.golovnev.shopping.domain.client.Client
+import ru.golovnev.shopping.web.client.ClientDto
+import ru.golovnev.shopping.web.client.ClientMapper.toEntity
 import java.util.*
 import javax.persistence.EntityNotFoundException
 
@@ -12,7 +14,19 @@ import javax.persistence.EntityNotFoundException
 class ClientService(
     private val clientJpaRepository: ClientJpaRepository
 ) {
-    fun save(client: Client): Client =
+    fun save(clientDto: ClientDto): Client =
+        clientDto.id?.let {
+            clientJpaRepository.findByIdOrNull(it)?.let { client ->
+                saveClient(
+                    client.apply {
+                        clientDto.name?.let { name -> this.name = name }
+                        this.telephone = clientDto.telephone
+                    }
+                )
+            }
+        } ?: saveClient(clientDto.toEntity())
+
+    private fun saveClient(client: Client): Client =
         clientJpaRepository.save(client as ClientEntity)
 
     fun deleteById(clientId: UUID) =

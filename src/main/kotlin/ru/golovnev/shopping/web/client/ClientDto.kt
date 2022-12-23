@@ -3,9 +3,7 @@ package ru.golovnev.shopping.web.client
 import java.util.*
 
 class ClientDto(
-    val id: UUID?,
-
-    val name: String?,
-
-    val telephone: Long?
+    val id: UUID? = null,
+    val name: String? = null,
+    val telephone: Long? = null
 )

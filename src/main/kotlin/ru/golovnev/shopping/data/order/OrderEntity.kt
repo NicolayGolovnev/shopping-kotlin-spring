@@ -1,5 +1,6 @@
 package ru.golovnev.shopping.data.order
 
+import org.hibernate.annotations.DynamicUpdate
 import ru.golovnev.shopping.data.pricelist.PriceListEntity
 import ru.golovnev.shopping.data.client.ClientEntity
 import ru.golovnev.shopping.domain.order.Order
@@ -9,22 +10,23 @@ import javax.persistence.*
 
 @Entity
 @Table(schema = "public", name = "\"Order\"")
+@DynamicUpdate
 class OrderEntity(
     @Id
     @Column(name = "\"OrderId\"")
     override val id: UUID = UUID.randomUUID(),
 
     @Column(name = "\"Date\"")
-    override val date: LocalDate = LocalDate.now(),
+    override var date: LocalDate = LocalDate.now(),
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"PriceListId\"")
-    override val priceList: PriceListEntity,
+    override var priceList: PriceListEntity,
 
     @Column(name = "\"Count\"")
-    override val count: Long? = null,
+    override var count: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ClientId\"")
-    override val client: ClientEntity
+    override var client: ClientEntity
 ) : Order
